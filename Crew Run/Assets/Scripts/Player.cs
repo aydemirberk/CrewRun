@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int _playerSpeed = 1;
+    //private int _playerSpeed = 1;
 
     private void FixedUpdate()
     {
-        transform.Translate(Vector3.forward * _playerSpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * Time.deltaTime);
     }
 
     private void Update()
