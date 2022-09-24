@@ -1,2 +1,3 @@
 # CrewRun
-Hypercasual Runner Game 
+Hypercasual Runner Game Based Mathematical Operations Mechanic
+This project is still developing
