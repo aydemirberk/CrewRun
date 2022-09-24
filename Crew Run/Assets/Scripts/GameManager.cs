@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject TargetPoint;
     public static int characterCount = 1;
     public List<GameObject> Characters;
+    public List<GameObject> SpawnParticles;
+    public List<GameObject> DestroyParticles;
 
 
     void Start()
@@ -22,27 +24,42 @@ public class GameManager : MonoBehaviour
         {
             case "Multiple":
 
-                MathOperations.Multiple(collidedNumber, Characters, spawnPos);
+                MathOperations.Multiple(collidedNumber, Characters, spawnPos, SpawnParticles);
 
                 break;
 
             case "Plus":
 
-                MathOperations.Plus(collidedNumber, Characters, spawnPos);
+                MathOperations.Plus(collidedNumber, Characters, spawnPos, SpawnParticles);
 
                 break;
 
             case "Minus":
 
-                MathOperations.Minus(collidedNumber, Characters);
+                MathOperations.Minus(collidedNumber, Characters, DestroyParticles);
 
                 break;
 
             case "Divide":
 
-                MathOperations.Divide(collidedNumber, Characters);
+                MathOperations.Divide(collidedNumber, Characters, DestroyParticles);
                 break;
 
+        }
+    }
+
+    public void PlayDestroyEffect(Vector3 charPosition)
+    {
+        foreach (var item in DestroyParticles)
+        {
+            if (!item.activeInHierarchy)
+            {
+                item.SetActive(true);
+                item.transform.position = charPosition;
+                item.GetComponent<ParticleSystem>().Play();
+                characterCount--;
+                break;
+            }
         }
     }
 

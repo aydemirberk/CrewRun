@@ -24,7 +24,8 @@ public class SubCharacter : MonoBehaviour
     {
         if (other.CompareTag("BadObject"))
         {
-            GameManager.characterCount--;
+            Vector3 newPos = new Vector3(transform.position.x, .27f, transform.position.z);
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().PlayDestroyEffect(newPos);
             gameObject.SetActive(false);
         }
     }
