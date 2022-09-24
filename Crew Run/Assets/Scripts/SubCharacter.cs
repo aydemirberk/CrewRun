@@ -24,7 +24,7 @@ public class SubCharacter : MonoBehaviour
     {
         if (other.CompareTag("BadObject"))
         {
-            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().characterCounter--;
+            GameManager.characterCount--;
             gameObject.SetActive(false);
         }
     }

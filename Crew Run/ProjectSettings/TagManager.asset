@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - GameManager
+  - BadObject
+  - Plus
+  - Minus
+  - Multiple
+  - Divide
   layers:
   - Default
   - TransparentFX

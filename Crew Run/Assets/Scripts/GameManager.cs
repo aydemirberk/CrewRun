@@ -1,38 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Berk;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject SpawnPoint;
     public GameObject TargetPoint;
-    public int characterCounter;
-
-
+    public static int characterCount = 1;
     public List<GameObject> Characters;
 
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void SubCharacterControl(string operationType, int collidedNumber, Transform spawnPos)
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        switch (operationType)
         {
-            foreach (var item in Characters)
-            {
-                if (!item.activeInHierarchy)
-                {
-                    item.transform.position = SpawnPoint.transform.position;
-                    item.SetActive(true);
-                    characterCounter++;
-                    break;
-                }
-            }
-        }        
+            case "Multiple":
+
+                MathOperations.Multiple(collidedNumber, Characters, spawnPos);
+
+                break;
+
+            case "Plus":
+
+                MathOperations.Plus(collidedNumber, Characters, spawnPos);
+
+                break;
+
+            case "Minus":
+
+                MathOperations.Minus(collidedNumber, Characters);
+
+                break;
+
+            case "Divide":
+
+                MathOperations.Divide(collidedNumber, Characters);
+                break;
+
+        }
     }
 
 }

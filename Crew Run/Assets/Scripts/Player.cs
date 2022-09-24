@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //private int _playerSpeed = 1;
+    public GameManager gameManager;
 
     private void FixedUpdate()
     {
@@ -17,15 +17,22 @@ public class Player : MonoBehaviour
         {
             if (Input.GetAxis("Mouse X") < 0)
             {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x-.1f, transform.position.y, transform.position.z), .3f);
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - .1f, transform.position.y, transform.position.z), .3f);
             }
 
-            if(Input.GetAxis("Mouse X")> 0)
+            if (Input.GetAxis("Mouse X") > 0)
             {
                 transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x + .1f, transform.position.y, transform.position.z), .3f);
             }
         }
+    }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Plus") || other.CompareTag("Minus") || other.CompareTag("Multiple") || other.CompareTag("Divide"))
+        {
+            int number = int.Parse(other.name);
+            gameManager.SubCharacterControl(other.tag, number, other.transform);
+        }
     }
 }
