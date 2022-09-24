@@ -146,6 +146,7 @@ namespace Berk
                             item.SetActive(false);
                             item.transform.position = Vector3.zero;
                             number3++;
+                            GameManager.characterCount -= collidedNumber;
                         }
                     }
 
@@ -157,8 +158,6 @@ namespace Berk
 
                 }
             }
-
-           GameManager.characterCount -= collidedNumber;
 
         }
 

@@ -20,13 +20,14 @@ public class SubCharacter : MonoBehaviour
         _Navmesh.SetDestination(Target.transform.position);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("BadObject"))
+        if (collision.gameObject.CompareTag("BadObject"))
         {
             Vector3 newPos = new Vector3(transform.position.x, .27f, transform.position.z);
             GameObject.FindWithTag("GameManager").GetComponent<GameManager>().PlayDestroyEffect(newPos);
             gameObject.SetActive(false);
         }
+
     }
 }
