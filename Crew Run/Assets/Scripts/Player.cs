@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
         {
             int number = int.Parse(other.name);
             gameManager.SubCharacterControl(other.tag, number, other.transform);
+            other.GetComponent<BoxCollider>().enabled = false;
         }
     }
 }
