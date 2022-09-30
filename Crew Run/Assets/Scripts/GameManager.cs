@@ -11,10 +11,23 @@ public class GameManager : MonoBehaviour
     public List<GameObject> SpawnParticles;
     public List<GameObject> DestroyParticles;
 
+    [Header("Level Datas")]
+    public List<GameObject> Enemies;
+    public int EnemyNumber;
+
 
     void Start()
     {
+        SpawnEnemies();
+    }
 
+
+    public void SpawnEnemies()
+    {
+        for(int i = 0; i<EnemyNumber; i++)
+        {
+            Enemies[i].SetActive(true);
+        }
     }
 
 

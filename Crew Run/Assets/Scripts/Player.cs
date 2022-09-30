@@ -5,26 +5,45 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public GameManager gameManager;
+    public GameObject Camera;
+    public bool endGame;
+    [SerializeField] GameObject PlayerEndPosition;
+    private Vector3 EndPos;
+
+    private void Start()
+    {
+        EndPos = PlayerEndPosition.transform.position;
+    }
 
     private void FixedUpdate()
     {
+        if(!endGame)
         transform.Translate(Vector3.forward * Time.deltaTime);
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (endGame)
         {
-            if (Input.GetAxis("Mouse X") < 0)
-            {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - .1f, transform.position.y, transform.position.z), .3f);
-            }
+            transform.position = Vector3.Lerp(transform.position, new Vector3(EndPos.x, transform.position.y, EndPos.z), .005f);
+        }
 
-            if (Input.GetAxis("Mouse X") > 0)
+        else
+        {
+            if (Input.GetKey(KeyCode.Mouse0))
             {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x + .1f, transform.position.y, transform.position.z), .3f);
+                if (Input.GetAxis("Mouse X") < 0)
+                {
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - .1f, transform.position.y, transform.position.z), .3f);
+                }
+
+                if (Input.GetAxis("Mouse X") > 0)
+                {
+                    transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x + .1f, transform.position.y, transform.position.z), .3f);
+                }
             }
         }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,6 +53,12 @@ public class Player : MonoBehaviour
             int number = int.Parse(other.name);
             gameManager.SubCharacterControl(other.tag, number, other.transform);
             other.GetComponent<BoxCollider>().enabled = false;
+        }
+        else if (other.CompareTag("LevelEnd"))
+        {
+            Camera.GetComponent<CameraMove>().endGame = true;
+            endGame = true;
+
         }
     }
 }

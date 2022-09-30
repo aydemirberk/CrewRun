@@ -10,6 +10,8 @@ TagManager:
   - Minus
   - Multiple
   - Divide
+  - Enemy
+  - LevelEnd
   layers:
   - Default
   - TransparentFX
