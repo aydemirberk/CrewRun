@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
         else if (other.CompareTag("LevelEnd"))
         {
             Camera.GetComponent<CameraMove>().endGame = true;
+            gameManager.ActivateEnemies();
             endGame = true;
 
         }

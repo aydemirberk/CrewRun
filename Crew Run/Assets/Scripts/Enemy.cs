@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
         NavMesh = GetComponent<NavMeshAgent>();
     }
 
-    public void AnimationTrigger()
+    public void ActivateAnimation()
     {
         GetComponent<Animator>().SetBool("Fight", true);
         startFight = true;

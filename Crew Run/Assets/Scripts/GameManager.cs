@@ -30,6 +30,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ActivateEnemies()
+    {
+
+        foreach (var item in Enemies)
+        {
+            if (item.activeInHierarchy)
+            {
+                item.GetComponent<Enemy>().ActivateAnimation();
+            }
+        }
+    }
 
     public void SubCharacterControl(string operationType, int collidedNumber, Transform spawnPos)
     {
