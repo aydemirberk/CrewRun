@@ -23,7 +23,6 @@ public class CameraMove : MonoBehaviour
         else
         {
             transform.position = Vector3.Lerp(transform.position, TargetPosition.transform.position, .01f);
-            Debug.Log("End Game Camera Move Successful");
         }
 
     }

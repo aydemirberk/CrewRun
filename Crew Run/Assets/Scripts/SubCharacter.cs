@@ -29,5 +29,13 @@ public class SubCharacter : MonoBehaviour
             gameObject.SetActive(false);
         }
 
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("collided with enemy");
+            Vector3 newPos = new Vector3(transform.position.x, .27f, transform.position.z);
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().PlayDestroyEffect(newPos);
+            gameObject.SetActive(false);
+
+        }
     }
 }

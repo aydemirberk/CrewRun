@@ -5,25 +5,39 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public GameObject AttackTarget;
-    NavMeshAgent NavMesh;
-    bool startFight;
+    private NavMeshAgent _NavMesh;
+    private bool _startFight;
+    private Transform _startPosition;
 
     private void Start()
     {
-        NavMesh = GetComponent<NavMeshAgent>();
+        _NavMesh = GetComponent<NavMeshAgent>();
     }
 
     public void ActivateAnimation()
     {
         GetComponent<Animator>().SetBool("Fight", true);
-        startFight = true;
+        _startFight = true;
     }
 
     private void LateUpdate()
     {
-        if (startFight)
+        if (_startFight)
         {
-            NavMesh.SetDestination(AttackTarget.transform.position);
+            _NavMesh.SetDestination(AttackTarget.transform.position);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("SubCharacter"))
+        {
+            Debug.Log("collided");
+            Vector3 newPos = new Vector3(transform.position.x, .27f, transform.position.z);
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().PlayDestroyEffect(newPos);
+            gameObject.SetActive(false);
+
+        }
+    }
+            
 }

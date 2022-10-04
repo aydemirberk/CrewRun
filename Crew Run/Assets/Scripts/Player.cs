@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         EndPos = PlayerEndPosition.transform.position;
+
+
     }
 
     private void FixedUpdate()
@@ -58,6 +60,7 @@ public class Player : MonoBehaviour
         {
             Camera.GetComponent<CameraMove>().endGame = true;
             gameManager.ActivateEnemies();
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().TargetPoint.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1);
             endGame = true;
 
         }

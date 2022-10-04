@@ -12,6 +12,7 @@ TagManager:
   - Divide
   - Enemy
   - LevelEnd
+  - SubCharacter
   layers:
   - Default
   - TransparentFX
